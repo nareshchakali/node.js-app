@@ -1,0 +1,19 @@
+{
+  "name": "samplecrud",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pavan Kumar Anandam",
+  "license": "ISC",
+  "dependencies": {
+    "azure-storage": "^2.10.3",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "mysql": "^2.18.1",
+    "node-uuid": "^1.4.8",
+    "pm2": "^4.5.5"
+  }
+}
