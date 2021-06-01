@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 
 var mysql = require('mysql');
-var port = process.env.port;
+var port = 8080;
 //var conn = mysql.createConnection({host: "samplemysql.mysql.database.azure.com", user: "azure_root@samplemysql", password: {your_password}, database: {your_database}, port: 3306, ssl:{ca:fs.readFileSync({ca-cert filename})}});
 
 var conn = mysql.createConnection({
