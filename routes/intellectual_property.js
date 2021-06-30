@@ -12,7 +12,7 @@ router.post('/create', function(request, response){
         response.status(400).send('Fields are required');
     }
   
-    const sql = "INSERT INTO intellectual_property (name,description,category,department) VALUES ('"+body.name+"' ,'"+body.desc+"' ,'"+body.category+"','"+body.department+"')";
+    const sql = "INSERT INTO intellectual_property (user_id,user_name,user_email,name,description,category,department) VALUES ('"+body.user_id+"' ,'"+body.user_name+"' , '"+body.user_email+"' ,'"+body.name+"' ,'"+body.desc+"' ,'"+body.category+"','"+body.department+"')";
 
     console.log(sql);
     conn.query(sql, 
@@ -53,7 +53,7 @@ router.get('/get/:id', function(request, response){
         response.status(400).send('Fields are required');
    }
   
-    const sql = "SELECT id,name,description,category,contr_status,status_comments,department,created_on,updated_on from intellectual_property where id="+id;
+    const sql = "SELECT id,name,description,category,contr_status,status_comments,department,created_on,updated_on,user_name from intellectual_property where id="+id;
 
     conn.query(sql, 
         function (err, results, fields) {

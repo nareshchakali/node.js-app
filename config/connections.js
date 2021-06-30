@@ -1,10 +1,10 @@
 var mysql = require('mysql');
 
 var conn = mysql.createConnection({
-    host: 'samplemysql.mysql.database.azure.com',
-    user: 'azure_root@samplemysql',
-    password: 'Pavan2Kumar',
-    database: 'snp',
+    host: 'knowledgecentre.mysql.database.azure.com',
+    user: 'snpadmin@knowledgecentre',
+    password: '%g""&F6G4M=#)Szb',
+    database: 'dev',
     multipleStatements: true,
     ssl:true
 });
