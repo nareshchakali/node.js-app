@@ -12,7 +12,7 @@ router.post('/create', function(request, response){
         response.status(400).send('Fields are required');
     }
   
-    const sql = "INSERT INTO intellectual_property (user_id,user_name,user_email,name,description,category,department) VALUES ('"+body.user_id+"' ,'"+body.user_name+"' , '"+body.user_email+"' ,'"+body.name+"' ,'"+body.desc+"' ,'"+body.category+"','"+body.department+"')";
+    const sql = "INSERT INTO intellectual_property (user_id,user_name,user_email,name,description,category,department,url) VALUES ('"+body.user_id+"' ,'"+body.user_name+"' , '"+body.user_email+"' ,'"+body.name+"' ,'"+body.desc+"' ,'"+body.category+"','"+body.department+"','"+body.url+"')";
 
     console.log(sql);
     conn.query(sql, 
@@ -30,7 +30,11 @@ router.post('/create', function(request, response){
 
 router.get('/get', function(request, response){
  
-    const sql = "SELECT id,name,description,category,contr_status,status_comments,department,created_on,updated_on from intellectual_property limit 10";
+    //const body = JSON.parse(request.body);
+
+    //let limit = body.page * 10;
+
+    const sql = "SELECT id,name,description,category,contr_status,url,status_comments,department,created_on,updated_on,user_name from intellectual_property";
 
     conn.query(sql, 
         function (err, results, fields) {
@@ -53,7 +57,7 @@ router.get('/get/:id', function(request, response){
         response.status(400).send('Fields are required');
    }
   
-    const sql = "SELECT id,name,description,category,contr_status,status_comments,department,created_on,updated_on,user_name from intellectual_property where id="+id;
+    const sql = "SELECT id,name,description,category,contr_status,status_comments,department,created_on,updated_on,user_name,url from intellectual_property where id="+id;
 
     conn.query(sql, 
         function (err, results, fields) {
@@ -80,7 +84,7 @@ router.post('/update', function(request, response){
         response.status(400).send('Fields are required');
     }
   
-    const sql = "UPDATE intellectual_property SET name='"+body.name+"',description='"+body.desc+"', category='"+body.category +"', department='"+body.department+"' WHERE id="+body.id;
+    const sql = "UPDATE intellectual_property SET name='"+body.name+"',description='"+body.desc+"', category='"+body.category +"', department='"+body.department +"', url='"+body.url+"' WHERE id="+body.id;
 
     console.log(sql);
     conn.query(sql, 
@@ -108,7 +112,7 @@ router.post('/update-status', function(request, response){
         response.status(400).send('Fields are required');
     }
   
-    const sql = "UPDATE intellectual_property SET name='"+body.name+"',description='"+body.desc+"', category='"+body.category +"', contr_status='"+body.status+"', status_comments='"+body.status_comments+"', department='"+body.department+"' WHERE id="+body.id;
+    const sql = "UPDATE intellectual_property SET name='"+body.name+"',description='"+body.desc+"', category='"+body.category +"', contr_status='"+body.status+"', status_comments='"+body.status_comments+"', department='"+body.department +"', url='"+body.url+"'  WHERE id="+body.id;
 
     console.log(sql);
     conn.query(sql, 

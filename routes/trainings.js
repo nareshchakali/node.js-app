@@ -11,7 +11,7 @@ router.post('/create', function(request, response){
         response.status(400).send('Fields are required');
     }
   
-    const sql = "INSERT INTO trainings (name,category,description) VALUES ('"+body.name+"' ,'"+body.category+"','"+body.description+"' )";
+    const sql = "INSERT INTO trainings (user_id,user_name,user_email,name,category,description,url) VALUES ('"+body.user_id+"' ,'"+body.user_name+"' , '"+body.user_email+"' ,'"+body.name+"' ,'"+body.category+"','"+body.description+"','"+body.url+"')";
 
     console.log(sql);
     conn.query(sql, 
@@ -29,7 +29,7 @@ router.post('/create', function(request, response){
 
 router.get('/get', function(request, response){
  
-    const sql = "SELECT id,name,category,created_on,updated_on from trainings limit 10";
+    const sql = "SELECT id,name,category,status,created_on,updated_on,user_name from trainings limit 10";
 
     conn.query(sql, 
         function (err, results, fields) {
@@ -52,7 +52,7 @@ router.get('/get/:id', function(request, response){
         response.status(400).send('Fields are required');
    }
   
-    const sql = "SELECT id,name,category,status,description,comments,created_on,updated_on from trainings where id="+id;
+    const sql = "SELECT id,name,category,status,description,comments,created_on,updated_on,user_name,url from trainings where id="+id;
 
     conn.query(sql, 
         function (err, results, fields) {
@@ -80,7 +80,7 @@ router.post('/update', function(request, response){
         response.status(400).send('Fields are required');
     }
   
-    const sql = "UPDATE trainings SET name='"+body.name+"',category='"+body.category+"',description='"+body.description+"' WHERE id="+body.id;
+    const sql = "UPDATE trainings SET name='"+body.name+"',category='"+body.category+"',description='"+body.description+"', url='"+body.url+"' WHERE id="+body.id;
 
     console.log(sql);
     conn.query(sql, 
@@ -109,7 +109,7 @@ router.post('/update-status', function(request, response){
         response.status(400).send('Fields are required');
     }
   
-    const sql = "UPDATE trainings SET name='"+body.name+"',category='"+body.category+"',comments='"+body.comments+"',status='"+body.status+"',description='"+body.description+"' WHERE id="+body.id;
+    const sql = "UPDATE trainings SET name='"+body.name+"',category='"+body.category+"',comments='"+body.comments+"',status='"+body.status+"',description='"+body.description+"', url='"+body.url+"' WHERE id="+body.id;
 
     console.log(sql);
     conn.query(sql, 

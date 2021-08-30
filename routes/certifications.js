@@ -28,7 +28,7 @@ router.post('/create', function(request, response){
         response.status(400).send('Fields are required');
     }
 
-    const sql = "INSERT INTO certifications (name,number,member,date,expiry_date) VALUES ('"+body.name+"' ,'"+body.number+"' ,'"+body.member+"' ,'"+body.date+"' ,'"+body.expiry_date+"')";
+    const sql = "INSERT INTO certifications (user_id,user_name,user_email,name,number,member,date,expiry_date) VALUES ('"+body.user_id+"' ,'"+body.user_name+"' , '"+body.user_email+"' ,'"+body.name+"' ,'"+body.number+"' ,'"+body.member+"' ,'"+body.date+"' ,'"+body.expiry_date+"')";
 
     console.log(sql);
     conn.query(sql, 
@@ -52,7 +52,7 @@ router.get('/get/:id', function(request, response){
         response.status(400).send('Fields are required');
    }
   
-    const sql = "SELECT id,name,number,member,date,expiry_date,created_on,comments from certifications where id="+id;
+    const sql = "SELECT id,name,number,member,date,expiry_date,created_on,comments,user_name from certifications where id="+id;
 
     conn.query(sql, 
         function (err, results, fields) {
