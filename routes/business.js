@@ -29,7 +29,7 @@ router.post('/create', function(request, response){
 
 router.get('/get', function(request, response){
  
-    const sql = "SELECT id,name,type,description,created_on,updated_on,user_name from business_development limit 10";
+    const sql = "SELECT id,name,type,description,date_format(created_on,'%d/%m/%Y %H:%i') as created_on,date_format(updated_on,'%d/%m/%Y %H:%i') as updated_on,user_name from business_development limit 10";
 
     conn.query(sql, 
         function (err, results, fields) {

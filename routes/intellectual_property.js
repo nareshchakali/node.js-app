@@ -1,5 +1,22 @@
 var router = require('express').Router();
 
+router.get('/dashboard', function(request, response){
+ 
+  
+    const sql = "SELECT category,COUNT(id) as count FROM intellectual_property GROUP BY category";
+
+    conn.query(sql, 
+        function (err, results, fields) {
+
+          if (err) {
+            console.log(err);
+            response.status(400).send('Error in database operation');
+          } else {  
+            response.send(results);
+          }
+  
+        });
+    });
 
 router.post('/create', function(request, response){
  
@@ -34,7 +51,7 @@ router.get('/get', function(request, response){
 
     //let limit = body.page * 10;
 
-    const sql = "SELECT id,name,description,category,contr_status,url,status_comments,department,created_on,updated_on,user_name from intellectual_property";
+    const sql = "SELECT id,name,description,category,contr_status,url,status_comments,department,date_format(created_on,'%d/%m/%Y %H:%i') as created_on,updated_on,user_name from intellectual_property";
 
     conn.query(sql, 
         function (err, results, fields) {

@@ -2,7 +2,7 @@ var router = require('express').Router();
 
 router.get('/get', function(request, response){
  
-    const sql = "SELECT id,name,number,member,date,expiry_date,created_on from certifications limit 10";
+    const sql = "SELECT id,name,number,member,date,expiry_date,date_format(created_on,'%d/%m/%Y %H:%i') as created_on from certifications limit 10";
 
     conn.query(sql, 
         function (err, results, fields) {
